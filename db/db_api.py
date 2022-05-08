@@ -1,7 +1,5 @@
 import sqlite3
 from flask import g
-import sqlite3
-from flask import g
 
 DATABASE = 'penis.db'
 

@@ -16,8 +16,8 @@ def getitems_sortedpricerange(cur):
         items_list['items'].append(item)
     return json.dumps(items_list, ensure_ascii=False)
 # def getproductid(cur):
-#     for row in cur.execute('select good_id from goods where name = '+str(input())+';'):
-#         items = {'items':[]}
+#     items_list = {'items':[]}
+#     for row in cur.execute('select id from goods'):
 # def allproductincategory(cur):
 #     for row in cur.execute('select name, price_USD, category from goods order by category;'):
 #         print(row)
@@ -25,13 +25,19 @@ def getitems_sortedpricerange(cur):
 
 
 
-# def mostexpensive(cur):
-#     for row in cur.execute('select name, max(price_USD) from goods;'):
-#         print(row)
-#
-# def cheapest(cur):
-#   for row in cur.execute('select name, min(price_USD) from goods;'):
-#     print(row)
+def mostexpensive(cur):
+    items_list = {'items':[]}
+    for row in cur.execute('select name, max(price_USD) from goods;'):
+        item = {'name': row[0], 'price_USD': row[1]}
+        items_list['items'].append(item)
+    return json.dumps(items_list, ensure_ascii=False)
+
+def cheapest(cur):
+    items_list = {'items':[]}
+    for row in cur.execute('select name, min(price_USD) from goods;'):
+        item = {'name': row[0], 'price_USD': row[1]}
+        items_list['items'].append(item)
+    return json.dumps(items_list, ensure_ascii=False)
 #
 # def getpricerange(cur):
 #     for row in cur.execute('select name, price_USD from goods WHERE price_USD BETWEEN '+str(input())+' AND '+str(input())+';'):
